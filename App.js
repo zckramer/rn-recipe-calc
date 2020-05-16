@@ -1,19 +1,28 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, Button } from 'react-native';
+import NewRecipeModal from './components/NewRecipeModal';
 
 export default function App() {
+ const [isCreateNewRecipe, setIsCreateNewRecipe] = useState(false)
+
+  function closeNewRecipeModal () {
+    setIsCreateNewRecipe(false);
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+    <View style={styles.mainMenu}>
+      <Button title="Create New Recipe" onPress={() => setIsCreateNewRecipe(true)} />
+      <NewRecipeModal visible={isCreateNewRecipe} close={closeNewRecipeModal}/>
+      <Text>Main Menu Screen</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  mainMenu: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  }
 });
